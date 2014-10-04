@@ -1,4 +1,5 @@
-﻿using Contacts.API.App_Start;
+﻿using System.Net.Http.Formatting;
+using Contacts.API.App_Start;
 using Contacts.Data;
 using System.Data.Entity;
 using System.Web.Http;
@@ -20,6 +21,10 @@ namespace Contacts.API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            // Support only JSON responses for all requests
+            GlobalConfiguration.Configuration.Formatters.Clear();
+            GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
         }
 
         protected void Application_Error()

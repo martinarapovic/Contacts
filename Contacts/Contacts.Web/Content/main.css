@@ -1,0 +1,27 @@
+﻿body {
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+}
+
+.menu-container {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: #333;
+    outline: none;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration: underline;
+}
+
+.ui.small.table.segment th, tr {
+    font-size: small;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}

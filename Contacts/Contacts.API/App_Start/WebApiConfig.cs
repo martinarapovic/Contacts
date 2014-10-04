@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web.Http;
+using Contacts.API.Infrastructure;
 
 namespace Contacts.API
 {
@@ -27,6 +29,11 @@ namespace Contacts.API
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Replace ContentNegotiator service to return only JSON response for all responses no matter what content type is requested
+            var jsonFormatter = new JsonMediaTypeFormatter();
+            config.Services.Replace(typeof(IContentNegotiator), new JsonContentNegotiator(jsonFormatter));
+
         }
     }
 }
