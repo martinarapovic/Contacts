@@ -13,8 +13,11 @@ namespace Contacts.API.Mappings.Profiles
 
         protected override void Configure()
         {
-            // TODO: Define mapping configurations when model is fully defined...
             Mapper.CreateMap<Contact, ContactViewModel>();
+            Mapper.CreateMap<EmailAddress, EmailAddressViewModel>();
+            Mapper.CreateMap<Label, LabelViewModel>();
+            Mapper.CreateMap<PhoneNumber, PhoneNumberViewModel>();
+            Mapper.CreateMap<Tag, TagViewModel>();
         }
     }
 }

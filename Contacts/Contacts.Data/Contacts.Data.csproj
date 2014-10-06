@@ -50,6 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\ContactConfiguration.cs" />
+    <Compile Include="Configurations\EmailAddressConfiguration.cs" />
+    <Compile Include="Configurations\LabelConfiguration.cs" />
+    <Compile Include="Configurations\PhoneNumberConfiguration.cs" />
+    <Compile Include="Configurations\TagConfiguration.cs" />
     <Compile Include="ContactsDbInitializer.cs" />
     <Compile Include="ContactsEntities.cs" />
     <Compile Include="Infrastructure\DatabaseFactory.cs" />

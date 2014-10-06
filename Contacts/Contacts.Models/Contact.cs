@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Contacts.Models
 {
@@ -15,9 +13,15 @@ namespace Contacts.Models
         public string City { get; set; }
         public string Note { get; set; }
 
+        public virtual ICollection<EmailAddress> EmailAddresses { get; set; }
+        public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
+
         public Contact()
         {
-        
+            EmailAddresses = new List<EmailAddress>();
+            PhoneNumbers = new List<PhoneNumber>();
+            Tags = new List<Tag>();
         }
     }
 }

@@ -1,13 +1,10 @@
 ﻿using Contacts.Models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 
-namespace WebApiTest.Models
+namespace Contacts.Data.Configurations
 {
-    internal partial class ContactConfiguration : EntityTypeConfiguration<Contact>
+    internal class ContactConfiguration : EntityTypeConfiguration<Contact>
     {
         public ContactConfiguration(string schema = "dbo")
         {
