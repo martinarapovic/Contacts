@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="contactsApp">
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="ContactsApp">
 <head>
     <meta charset="utf-8" />
     <title>Contacts angular js app</title>
@@ -10,13 +10,12 @@
     <link rel="stylesheet" href="Content/main.css" />
 </head>
 <body>
-    
     <div>
         <div class="menu-container">
             <my-Menu />
         </div>
         <section id="main" style="height:90%;">
-            <div data-ng-view data-ng-animate></div>
+            <div data-ui-view data-ng-animate></div>
         </section>
     </div>
     
@@ -35,8 +34,14 @@
 
     <script src="/app/config.js"></script>
     <script src="/app/app.js"></script>
+    
     <script src="/app/directives/menu.js"></script>
+
+    <script src="/app/services/shared/service-helper.js"></script>
+    <script src="/app/services/customers/contacts-service.js"></script>
+
     <script src="/app/controllers/home/home-controller.js"></script>
+    
     <script src="/app/controllers/contacts/contacts-controller.js"></script>
     
 </body>

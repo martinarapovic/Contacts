@@ -65,7 +65,11 @@
     <Content Include="app\controllers\home\home-controller.js" />
     <Content Include="app\directives\menu.js" />
     <Content Include="app\partials\Menu.html" />
+    <Content Include="app\services\customers\contacts-service.js" />
+    <Content Include="app\services\shared\service-helper.js" />
+    <Content Include="app\views\contacts\Add.html" />
     <Content Include="app\views\contacts\Contacts.html" />
+    <Content Include="app\views\contacts\Edit.html" />
     <Content Include="app\views\home\Home.html" />
     <Content Include="app\views\shared\Error.html" />
     <Content Include="Content\jquery\flick\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -146,9 +150,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="app\services\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

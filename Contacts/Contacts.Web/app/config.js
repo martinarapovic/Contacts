@@ -1,4 +1,4 @@
 ﻿var config = {
-    "webapiurl": "http://localhost:57355/",
-    "websiteurl": "http://localhost:60673/"
+    "webApiBaseUrl": "http://localhost:57355/",
+    "webSiteBaseUrl": "http://localhost:60673/"
 };

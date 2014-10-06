@@ -4,3 +4,64 @@
 <p>
     Simple Contacts application.
 </p>
+<div>
+    <table class="ui small table segment">
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    DoB
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    Note
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="contact in contacts">
+                <td>
+                    {{contact.FirstName}}
+                </td>
+                <td>
+                    <a href="/contacts/{{contact.ContactId}}">{{contact.LastName}}</a>
+                </td>
+                <td>
+                    {{contact.DoB}}
+                </td>
+                <td>
+                    {{contact.Address}}
+                </td>
+                <td>
+                    {{contact.City}}
+                </td>
+                <td>
+                    {{contact.Note}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" data-ng-show="contacts.length == 0">
+                    <div class="ui yellow message">
+                        There are no contacts in db... Use Create new button to add new contact!
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="6">
+                    <a href="/contacts/add" class="ui blue labeled icon button"><i class="ui icon add"></i>Create new</a>
+                </th>
+            </tr></tfoot>
+    </table>
+</div>
