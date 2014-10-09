@@ -1,27 +1,31 @@
-﻿using Contacts.Data.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Contacts.Data.Infrastructure;
 using Contacts.Data.Repositories;
 using Contacts.Models;
-using System.Collections.Generic;
 
 namespace Contacts.Services
 {
-    public class ContactService : IContactService
+    public class LabelService : ILabelService
     {
-        private readonly IContactRepository _repository;
+        private readonly ILabelRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ContactService(IContactRepository repository, IUnitOfWork unitOfWork)
+        public LabelService(ILabelRepository repository, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<Contact> GetContacts()
+        public IEnumerable<Label> GetLabels()
         {
             return _repository.GetAll();
         }
 
-        public Contact AddContact(Contact model)
+        public Label AddLabel(Label model)
         {
             _repository.Add(model);
             SaveChanges();
@@ -29,12 +33,12 @@ namespace Contacts.Services
             return model;
         }
 
-        public Contact GetContact(int id)
+        public Label GetLabel(int id)
         {
             return _repository.GetById(id);
         }
 
-        public Contact UpdateContact(Contact model)
+        public Label UpdateLabel(Label model)
         {
             _repository.Update(model);
             SaveChanges();
@@ -42,7 +46,7 @@ namespace Contacts.Services
             return model;
         }
 
-        public void DeleteContact(int id)
+        public void DeleteLabel(int id)
         {
             var contact = _repository.GetById(id);
             _repository.Delete(contact);
@@ -55,12 +59,12 @@ namespace Contacts.Services
         }
     }
 
-    public interface IContactService
+    public interface ILabelService
     {
-        IEnumerable<Contact> GetContacts();
-        Contact AddContact(Contact model);
-        Contact GetContact(int id);
-        Contact UpdateContact(Contact model);
-        void DeleteContact(int id);
+        IEnumerable<Label> GetLabels();
+        Label AddLabel(Label model);
+        Label GetLabel(int id);
+        Label UpdateLabel(Label model);
+        void DeleteLabel(int id);
     }
 }

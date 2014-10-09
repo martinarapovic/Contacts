@@ -5,23 +5,23 @@ using System.Collections.Generic;
 
 namespace Contacts.Services
 {
-    public class ContactService : IContactService
+    public class TagService : ITagService
     {
-        private readonly IContactRepository _repository;
+        private readonly ITagRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ContactService(IContactRepository repository, IUnitOfWork unitOfWork)
+        public TagService(ITagRepository repository, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<Contact> GetContacts()
+        public IEnumerable<Tag> GetTags()
         {
             return _repository.GetAll();
         }
 
-        public Contact AddContact(Contact model)
+        public Tag AddTag(Tag model)
         {
             _repository.Add(model);
             SaveChanges();
@@ -29,12 +29,12 @@ namespace Contacts.Services
             return model;
         }
 
-        public Contact GetContact(int id)
+        public Tag GetTag(int id)
         {
             return _repository.GetById(id);
         }
 
-        public Contact UpdateContact(Contact model)
+        public Tag UpdateTag(Tag model)
         {
             _repository.Update(model);
             SaveChanges();
@@ -42,7 +42,7 @@ namespace Contacts.Services
             return model;
         }
 
-        public void DeleteContact(int id)
+        public void DeleteTag(int id)
         {
             var contact = _repository.GetById(id);
             _repository.Delete(contact);
@@ -55,12 +55,12 @@ namespace Contacts.Services
         }
     }
 
-    public interface IContactService
+    public interface ITagService
     {
-        IEnumerable<Contact> GetContacts();
-        Contact AddContact(Contact model);
-        Contact GetContact(int id);
-        Contact UpdateContact(Contact model);
-        void DeleteContact(int id);
+        IEnumerable<Tag> GetTags();
+        Tag AddTag(Tag model);
+        Tag GetTag(int id);
+        Tag UpdateTag(Tag model);
+        void DeleteTag(int id);
     }
 }

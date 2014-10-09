@@ -43,7 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactService.cs" />
+    <Compile Include="EmailAddressService.cs" />
+    <Compile Include="LabelService.cs" />
+    <Compile Include="PhoneNumberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contacts.Data\Contacts.Data.csproj">

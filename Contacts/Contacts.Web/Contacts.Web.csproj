@@ -115,7 +115,10 @@
     <Content Include="Scripts\angular-1.2.26\angular-route.min.js" />
     <Content Include="Scripts\angular-1.2.26\angular.js" />
     <Content Include="Scripts\angular-1.2.26\angular.min.js" />
-    <Content Include="Scripts\angular-ui\select2.js" />
+    <Content Include="Scripts\angular-ui\ui-date\date.js" />
+    <Content Include="Scripts\angular-ui\ui-select2\select2.js" />
+    <Content Include="Scripts\angular-ui\ui-router\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui\ui-router\angular-ui-router.min.js" />
     <Content Include="Scripts\jquery\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery\jquery-ui-1.11.1.js" />
     <Content Include="Scripts\jquery\jquery-ui-1.11.1.min.js" />

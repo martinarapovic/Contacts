@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace Contacts.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class, new()
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class, new()
     {
         private ContactsEntities _dataContext;
         private readonly IDbSet<T> _dbSet;

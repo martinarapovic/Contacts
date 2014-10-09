@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using Contacts.API.Filters;
 
 namespace Contacts.API
 {

@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Formatting;
 using Contacts.API.App_Start;
+using Contacts.Common.IoC;
 using Contacts.Data;
 using System.Data.Entity;
 using System.Web.Http;
@@ -13,18 +14,25 @@ namespace Contacts.API
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
-
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            // Bootstrap app
             Bootstrapper.Configure();
-            Database.SetInitializer(new ContactsDbInitializer());
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            
+            GlobalConfiguration.Configure(WebApiConfig.Register);
 
             // Support only JSON responses for all requests
             GlobalConfiguration.Configuration.Formatters.Clear();
             GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
+            
+            // Setup db initializer
+            Database.SetInitializer(new ContactsDbInitializer());
+
+            AreaRegistration.RegisterAllAreas();
+            
+            // MVC configuration related
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
         }
 
         protected void Application_Error()
@@ -32,7 +40,7 @@ namespace Contacts.API
             var exception = Server.GetLastError();
             if (exception != null)
             {
-                System.Diagnostics.Debug.WriteLine("Error: {0}", exception);
+                
             }
         }
     }
