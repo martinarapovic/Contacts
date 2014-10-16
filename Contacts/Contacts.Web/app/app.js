@@ -3,8 +3,7 @@
         'ngRoute',
         'ngResource',
         'ngAnimate',
-        'ui.select2',
-        'ngTable'
+        'ui.select2'
     ]
 );
 
