@@ -1,15 +1,19 @@
-﻿app.factory('ServiceHelper', ['$http', '$resource', function($http, $resource) {
+﻿app.factory('serviceHelper', ['$http', '$resource', function($http, $resource) {
     var baseUrl = config.webApiBaseUrl;
     var createUrl = function(resourceUrl) {
         return baseUrl + resourceUrl;
     };
 
-    var getCustomerResource = function() {
-        return $resource(createUrl('api/contacts/:customerId'), {
-                customerId: '@Id'
+    var getContactResource = function () {
+        return $resource(createUrl('api/contacts/:contactId'), {
+                contactId: '@Id'
             }, {
                 'update': {
                      method: 'PUT'
+                },
+                'get': {
+                    method: 'GET',
+                    isArray: false
                 },
                 getPaged: {
                     url: createUrl("api/contacts?count=:count&page=:page&sortField=:sortField&sortOrder=:sortOrder"),
@@ -21,30 +25,82 @@
                         sortField: '@sortField',
                         sortOrder: '@sortOrder'
                     }
+                },
+                getFiltered: {
+                    url: createUrl("api/contacts?condition=:condition"),
+                    method: 'GET',
+                    isArray: true,
+                    params: {
+                        condition: '@condition'
+                    }
                 }
             });
     };
 
-    var getEmailAddressResource = new function () {
-        return $resource(createUrl('api/emailaddresses/:emailId'), { emailId: '@Id' });
+    var getEmailAddressResource = function () {
+        return $resource(createUrl('api/emailaddresses/:emailId'), {
+             emailId: '@Id'
+        }, {
+            'update': {
+                method: 'PUT'
+            },
+            'get': {
+                method: 'GET',
+                isArray: false
+            }
+        });
     };
     
-    var getLabelResource = new function () {
-        return $resource(createUrl('api/labels/:labelId'), { labelId: '@Id' }, { 'update': { method: 'PUT' } });
+    var getLabelResource = function () {
+        return $resource(createUrl('api/labels/:labelId'), {
+             labelId: '@Id'
+        }, {
+            'update': {
+                method: 'PUT'
+            },
+            'get': {
+                method: 'GET',
+                isArray: false
+            },
+            'query': {
+                method: 'GET',
+                isArray: true
+            }
+        });
     };
     
-    var getPhoneNumberResource = new function () {
-        return $resource(createUrl('api/phonenumbers/:phoneNumberId'), { phoneNumberId: '@Id' }, { 'update': { method: 'PUT' } });
+    var getPhoneNumberResource = function () {
+        return $resource(createUrl('api/phonenumbers/:phoneNumberId'), {
+            phoneNumberId: '@Id'
+        }, {
+            'update': {
+                method: 'PUT'
+            },
+            'get': {
+                method: 'GET',
+                isArray: false
+            }
+        });
     };
 
 
     var getTagResource = function () {
-        return $resource(createUrl('api/tags/:tagId'), { tagId: '@Id' }, { 'update': { method: 'PUT' } });
+        return $resource(createUrl('api/tags/:tagId'), {
+            tagId: '@Id'
+        }, {
+            'update': {
+                method: 'PUT'
+            },
+            'get': {
+                method: 'GET',
+                isArray: false
+            }
+        });
     };
 
     
     return {
-        Contact: getCustomerResource(),
+        Contact: getContactResource(),
         EmailAddress: getEmailAddressResource(),
         Label: getLabelResource(),
         PhoneNumber: getPhoneNumberResource(),

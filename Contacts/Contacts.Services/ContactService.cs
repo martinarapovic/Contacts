@@ -1,4 +1,5 @@
-﻿using Contacts.Data.Infrastructure;
+﻿using System.Linq;
+using Contacts.Data.Infrastructure;
 using Contacts.Data.Repositories;
 using Contacts.Models;
 using System.Collections.Generic;
@@ -19,6 +20,14 @@ namespace Contacts.Services
         public IEnumerable<Contact> GetContacts()
         {
             return _repository.GetAll();
+        }
+
+        public IEnumerable<Contact> GetContacts(string condition)
+        {
+            return _repository.GetMany(x =>
+                                       x.FirstName.Contains(condition) ||
+                                       x.LastName.Contains(condition) ||
+                                       x.Tags.Any(t => t.Name.Contains(condition)));
         }
 
         public Contact AddContact(Contact model)
@@ -58,6 +67,7 @@ namespace Contacts.Services
     public interface IContactService
     {
         IEnumerable<Contact> GetContacts();
+        IEnumerable<Contact> GetContacts(string condition);
         Contact AddContact(Contact model);
         Contact GetContact(int id);
         Contact UpdateContact(Contact model);

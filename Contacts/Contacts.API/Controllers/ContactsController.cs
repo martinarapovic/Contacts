@@ -17,6 +17,17 @@ namespace Contacts.API.Controllers
             _contactService = contactService;
         }
 
+        [HttpGet]
+        [Route("api/contacts/search/{condition}")]
+        public IHttpActionResult Search(string condition)
+        {
+            var contacts = _contactService.GetContacts(condition);
+            var contactViewModels = new List<ContactViewModel>();
+            Mapper.Map(contacts, contactViewModels);
+
+            return Ok(contactViewModels);
+        }
+
         public IHttpActionResult Get()
         {
             var contacts = _contactService.GetContacts();
@@ -29,6 +40,10 @@ namespace Contacts.API.Controllers
         public IHttpActionResult Get(int id)
         {
             var contact = _contactService.GetContact(id);
+            if (contact == null)
+            {
+                return NotFound();
+            }
             var contactViewModel = new ContactViewModel();
             Mapper.Map(contact, contactViewModel);
 
@@ -47,7 +62,7 @@ namespace Contacts.API.Controllers
         }
 
         [ValidateViewModelFilter]
-        public IHttpActionResult Put(int id, ContactViewModel contactViewModel)
+        public IHttpActionResult Put(int id, [FromBody]ContactViewModel contactViewModel)
         {
             contactViewModel.ContactId = id;
             var contact = _contactService.GetContact(id);

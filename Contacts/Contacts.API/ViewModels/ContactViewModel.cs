@@ -9,7 +9,6 @@ namespace Contacts.API.ViewModels
         public int ContactId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string Note { get; set; }
@@ -25,7 +24,6 @@ namespace Contacts.API.ViewModels
         {
             RuleFor(x => x.FirstName).NotEmpty().Length(0, 50);
             RuleFor(x => x.LastName).NotEmpty().Length(0, 50);
-            RuleFor(x => x.DateOfBirth).NotNull();
             RuleFor(x => x.Address).NotEmpty().Length(0, 100);
             RuleFor(x => x.City).NotEmpty().Length(0, 50);
             RuleFor(x => x.Note).Length(0, 255);

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using AutoMapper;
+﻿using AutoMapper;
 using Contacts.API.Filters;
+using Contacts.API.ViewModels;
 using Contacts.Models;
 using Contacts.Services;
-using Contacts.API.Filters;
-using Contacts.Services;
-using Contacts.API.ViewModels;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace Contacts.API.Controllers
 {

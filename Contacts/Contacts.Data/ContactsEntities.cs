@@ -15,7 +15,7 @@ namespace Contacts.Data
         public ContactsEntities()
             : base("ContactsEntities")
         {
-
+            base.Configuration.LazyLoadingEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

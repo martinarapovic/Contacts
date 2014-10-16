@@ -5,9 +5,10 @@ namespace Contacts.API.ViewModels
     public class PhoneNumberViewModel : ViewModelBase<PhoneNumberViewModel, PhoneNumberValidator>
     {
         public int PhoneNumberId { get; set; }
+        public string Number { get; set; }
         public int ContactId { get; set; }
         public int LabelId { get; set; }
-        public string Number { get; set; }
+        public LabelViewModel Label { get; set; }
     }
 
     public class PhoneNumberValidator : AbstractValidator<PhoneNumberViewModel>

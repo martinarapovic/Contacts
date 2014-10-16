@@ -13,7 +13,6 @@ namespace Contacts.API.Mappings.Profiles
 
         protected override void Configure()
         {
-            // TODO: Define mapping configurations when model is fully defined...
             Mapper.CreateMap<ContactViewModel, Contact>();
             
             Mapper.CreateMap<EmailAddressViewModel, EmailAddress>()

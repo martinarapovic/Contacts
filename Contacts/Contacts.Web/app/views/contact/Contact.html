@@ -1,0 +1,177 @@
+﻿ 
+<h2 class="ui dividing header" data-ng-cloak>{{isEdit ? 'Edit Contact' : 'Add Contact'}}</h2>
+<div class="ui small secondary segment">
+    <form name="formContact" class="ui small form segment" novalidate="novalidate">
+        <div class="ui two fields">
+            <div class="field" data-ng-class="{ 'error' : formContact.firstName.$invalid && !formContact.firstName.$pristine }">
+                <label for="firstName">First Name</label>
+                <div class="ui icon input">
+                    <input type="text" name="firstName" placeholder="First Name" required data-ng-maxlength="50" data-ng-model="contact.FirstName">
+                    <div class="ui red pointing above ui label" data-ng-show="formContact.firstName.$invalid && !formContact.firstName.$pristine">Enter first name</div>
+                    <i class="asterisk red icon" data-ng-show="formContact.firstName.$invalid && !formContact.firstName.$pristine"></i>
+                </div>
+            </div>
+
+            <div class="field" data-ng-class="{ 'error' : formContact.lastName.$invalid && !formContact.lastName.$pristine }">
+                <label for="lastName">Last Name</label>
+                <div class="ui icon input">
+                    <input type="text" name="lastName" placeholder="Last Name" required data-ng-maxlength="50" data-ng-model="contact.LastName">
+                    <div class="ui red pointing above ui label" data-ng-show="formContact.lastName.$invalid && !formContact.lastName.$pristine">Enter last name</div>
+                    <i class="asterisk red icon" data-ng-show="formContact.lastName.$invalid && !formContact.lastName.$pristine"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui two fields">
+            <div class="field" data-ng-class="{ 'error' : formContact.address.$invalid && !formContact.address.$pristine }">
+                <label for="address">Address</label>
+                <div class="ui icon input">
+                    <input type="text" name="address" placeholder="Address" required data-ng-maxlength="100" data-ng-model="contact.Address">
+                    <div class="ui red pointing above ui label" data-ng-show="formContact.address.$invalid && !formContact.address.$pristine">Enter address</div>
+                    <i class="asterisk red icon" data-ng-show="formContact.address.$invalid && !formContact.address.$pristine"></i>
+                </div>
+            </div>
+            <div class="field" data-ng-class="{ 'error' : formContact.city.$invalid && !formContact.city.$pristine }">
+                <label for="city">City</label>
+                <div class="ui icon input">
+                    <input type="text" name="city" placeholder="Enter City" required data-ng-maxlength="50" data-ng-model="contact.City">
+                    <div class="ui red pointing above ui label" data-ng-show="formContact.city.$invalid && !formContact.city.$pristine">Enter city</div>
+                    <i class="asterisk red icon" data-ng-show="formContact.city.$invalid && !formContact.city.$pristine"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui divider"></div>
+        <div class="field" data-ng-class="{ 'error' : formContact.note.$invalid && !formContact.note.$pristine }">
+            <label for="note">Note</label>
+            <div class="ui icon input">
+                <textarea name="note" placeholder="Note" data-ng-maxlength="255" data-ng-model="contact.Note"></textarea>
+                <div class="ui red pointing above ui label" data-ng-show="formContact.note.$invalid && !formContact.note.$pristine">Enter city</div>
+                <i class="asterisk red icon" data-ng-show="formContact.note.$invalid && !formContact.note.$pristine"></i>
+            </div>
+        </div>
+    </form>
+
+    <div class="ui three column grid">
+        <div class="column">
+            <form name="formAddPhoneNumber" class="ui fluid small form segment" novalidate="novalidate">
+                <div class="ui fluid secondary form segment">
+                    <h3 class="ui header">Add Phone Number</h3>
+                    <div class="ui two fields">
+                        <div class="field">
+                            <label>Number</label>
+                            <div class="ui icon input">
+                                <input placeholder="Phone Number" type="text" data-ng-model="number" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Label</label>
+                            <div class="ui icon input">
+                                <select ui-select2 data-ng-model="phoneNumberSelectedLabelId" data-placeholder="Pick a label" data-ng-required="true" style="width: 100%">
+                                    <option data-ng-repeat="label in labels" value="{{label.LabelId}}">{{label.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button data-ng-disabled="formAddPhoneNumber.$invalid" data-ng-click="addPhoneNumber()" class="ui blue mini button">Add</button>
+                </div>
+                <h3 class="ui header" data-ng-show="contact.PhoneNumbers != undefined && contact.PhoneNumbers.length > 0">Phone Numbers</h3>
+                <div class="ui fluid form">
+                    <table data-ng-show="contact.PhoneNumbers != undefined && contact.PhoneNumbers.length > 0" class="ui small table segment">
+                        <thead>
+                            <tr>
+                                <th class="seven wide">Phone Number</th>
+                                <th class="five wide">Label</th>
+                                <th class="three wide"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="item in contact.PhoneNumbers">
+                                <td>{{item.Number}}</td>
+                                <td>{{item.Label.Name}}</td>
+                                <td class="ui align right">
+                                    <a class="ui mini button" data-ng-click="deletePhoneNumber($index)"><i class="ui icon trash"></i> Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <div class="column">
+            <form name="formAddEmailAddress" class="ui fluid small form segment" novalidate="novalidate">
+                <div class="ui fluid secondary form segment">
+                    <h3 class="ui header">Add Email Address</h3>
+                    <div class="ui two fields">
+                        <div class="ui field">
+                            <label>Email Address</label>
+                            <div class="ui icon input">
+                                <input placeholder="Email Address" type="email" data-ng-model="emailAddress" required>
+                            </div>
+                        </div>
+                        <div class="ui field">
+                            <label>Label</label>
+                            <div class="ui icon input">
+                                <select ui-select2 data-ng-model="emailAddressSelectedLabelId" data-placeholder="Pick a label" data-ng-required="true" style="width: 100%">
+                                    <option data-ng-repeat="label in labels" value="{{label.LabelId}}">{{label.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button data-ng-disabled="formAddEmailAddress.$invalid" data-ng-click="addEmailAddress()" class="ui blue mini button">Add</button>
+                </div>
+                <h3 class="ui header" data-ng-show="contact.EmailAddresses != undefined && contact.EmailAddresses.length > 0">Email Addresses</h3>
+                <div class="ui fluid form">
+                    <table data-ng-show="contact.EmailAddresses != undefined && contact.EmailAddresses.length > 0" class="ui small table segment">
+                        <thead>
+                            <tr>
+                                <th class="seven wide">Email Address</th>
+                                <th class="five wide">Label</th>
+                                <th class="three wide"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="item in contact.EmailAddresses">
+                                <td>{{item.Address}}</td>
+                                <td>{{item.Label.Name}}</td>
+                                <td class="ui align right">
+                                    <a class="ui mini button" data-ng-click="deleteEmailAddress($index)"><i class="ui icon trash"></i> Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <div class="column">
+            <form name="formAddTag" class="ui fluid small form segment" novalidate="novalidate">
+                <div class="ui fluid secondary form segment">
+                    <h3 class="ui header">Add Tag</h3>
+                    <div class="ui field">
+                        <label>Tag</label>
+                        <div class="ui icon input">
+                            <input placeholder="Tag" type="text" data-ng-model="tag" required>
+                        </div>
+                    </div>
+                    <button data-ng-disabled="formAddTag.$invalid" data-ng-click="addTag()" class="ui blue mini button">Add</button>
+                </div>
+                <h3 class="ui header" data-ng-show="contact.Tags != undefined && contact.Tags.length > 0">Tags</h3>
+                <div class="ui blue labels">
+                    <div class="ui label" data-ng-repeat="item in contact.Tags">
+                        {{item.Name}} <i class="ui icon remove sign" data-ng-click="deleteTag($index)"></i>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="ui divider"></div>
+    <div class="inline field">
+        <button data-ng-cloak data-ng-disabled="formContact.$invalid" data-ng-click="addContact(contact)" class="ui blue mini button" data-ng-show="!isEdit">
+            Add
+        </button>
+        <button data-ng-cloak data-ng-disabled="formContact.$invalid" data-ng-click="editContact(contact)" class="ui blue mini button" data-ng-show="isEdit">
+            Save
+        </button>
+        <a class="ui black mini button" href="/contacts">Cancel</a>
+    </div>
+</div>

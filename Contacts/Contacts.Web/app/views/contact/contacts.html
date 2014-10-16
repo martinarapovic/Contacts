@@ -1,5 +1,5 @@
 ﻿
-<h5 class="ui header">Home - Showing only five contacts.</h5>
+<h5 class="ui header">Contacts</h5>
 <div class="ui divider"></div>
 <div>
     <table data-ng-cloak data-ng-show="contacts && contacts.length > 0" class="ui small table segment">
@@ -9,14 +9,24 @@
                 <th>Last Name</th>
                 <th>Address</th>
                 <th>City</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <tr data-ng-repeat="contact in contacts">
-                <td><a href="/contacts/edit/{{contact.ContactId}}">{{contact.FirstName}}</a></td>
-                <td><a href="/contacts/edit/{{contact.ContactId}}">{{contact.LastName}}</a></td>
+                <td>{{contact.FirstName}}</td>
+                <td>{{contact.LastName}}</td>
                 <td>{{contact.Address}}</td>
                 <td>{{contact.City}}</td>
+                <td style="width: 4%;">
+                    <a href="/contacts/edit/{{contact.ContactId}}"><i class="ui icon edit"></i></a>
+                </td>
+                <td style="width: 4%;">
+                    <i class="ui icon trash" style="float: right;" title="Delete" data-message="Do you want to delete this contact?"
+                       data-modal-id="{{contact.ContactId}}" data-on-confirm="deleteContact(contact.ContactId);"
+                       my-modal-confirm></i>
+                </td>
             </tr>
         </tbody>
     </table>

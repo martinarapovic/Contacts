@@ -1,4 +1,4 @@
-﻿app.factory('ContactsService', ['$resource', '$q', 'ServiceHelper', function ($resource, $q, serviceHelper) {
+﻿app.factory('contactService', ['$resource', '$q', 'serviceHelper', function ($resource, $q, serviceHelper) {
     var contact = serviceHelper.Contact;
 
     var getFiveLatestContacts = function () {
@@ -22,7 +22,7 @@
     };
 
     var editContact = function (item) {
-        return contact.update(item);
+        return contact.update({ contactId: item.ContactId }, item);
     };
 
     var getContact = function (id) {
