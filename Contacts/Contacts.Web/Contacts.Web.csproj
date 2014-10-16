@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\config.js" />
     <Content Include="app\controllers\contacts\contact-controller.js" />
     <Content Include="app\controllers\contacts\contacts-controller.js" />
     <Content Include="app\controllers\home\home-controller.js" />
@@ -130,6 +129,8 @@
     <Content Include="Scripts\jquery\jquery-ui-1.11.1.js" />
     <Content Include="Scripts\jquery\jquery-ui-1.11.1.min.js" />
     <Content Include="Scripts\jquery\jquery-1.10.2.js" />
+    <Content Include="Scripts\noty\jquery.noty.packaged.js" />
+    <Content Include="Scripts\noty\jquery.noty.packaged.min.js" />
     <Content Include="Scripts\select2\select2.js" />
     <Content Include="Scripts\semantic\semantic.js" />
     <Content Include="Scripts\semantic\semantic.min.js" />

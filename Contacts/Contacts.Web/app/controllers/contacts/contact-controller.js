@@ -3,44 +3,13 @@ app.controller('contactController',
     [            '$scope', '$rootScope', '$q', '$filter', '$location', '$routeParams', 'contactService', 'labelService',
         function ($scope,   $rootScope,   $q,   $filter,   $location,   $routeParams,   contactService,   labelService) {
 
-            $scope.isEdit = $routeParams.contactId != undefined && $routeParams.contactId > 0;
-            
-            $scope.contact = {
-                PhoneNumbers: [],
-                EmailAddresses: [],
-                Tags: []
-            };
-            
-            initialize();
-            
-            function initialize() {
+            var initialize = function () {
                 
                 $scope.contact = {
                     PhoneNumbers: [],
                     EmailAddresses: [],
                     Tags: []
                 };
-                
-                //contactService.getContact($routeParams.contactId)
-                //        .$promise
-                //            .then(function (data) {
-                //                console.log(data);
-                //
-                //                if (data.length > 0) {
-                //                    $scope.contact = data;
-                //                    return;
-                //                }
-                //
-                //                // No contact with specified id
-                //                $rootScope.error = 'Error getting contact with id=' + $routeParams.contactId + '.';
-                //                $location.url('/contacts');
-                //
-                //                getLabels();
-                //
-                //            }).catch(function (error) {
-                //                console.log(error);
-                //                $rootScope.error = 'Error occurred while getting contact. Please reload page...';
-                //            });
                 
                 if ($scope.isEdit) {
                     $q.all([
@@ -69,28 +38,8 @@ app.controller('contactController',
                             $rootScope.error = 'Error occurred while getting data.';
                         });
                 }
-            }
-            
-
-         
-            //labelService.getLabels()
-            //        .$promise
-            //            .then(function (data) {
-            //
-            //                console.log(data);
-            //                $scope.labels = data;
-            //
-            //                // Set default selected label for phone numbers and email
-            //                $scope.defaultSelectedLabelId = $scope.labels[0].LabelId;
-            //                $scope.phoneNumberSelectedLabelId = $scope.defaultSelectedLabelId;
-            //                $scope.emailAddressSelectedLabelId = $scope.defaultSelectedLabelId;
-            //
-            //            }).catch(function (error) {
-            //                console.log(error);
-            //                $rootScope.error = 'Error occurred while getting label.';
-            //            });
-
-            var setDefaultLabelsRelatedData = function (data) {
+            },
+            setDefaultLabelsRelatedData = function (data) {
                 $scope.labels = data;
                 
                 // Set default selected label for phone numbers and email
@@ -98,6 +47,17 @@ app.controller('contactController',
                 $scope.phoneNumberSelectedLabelId = $scope.defaultSelectedLabelId;
                 $scope.emailAddressSelectedLabelId = $scope.defaultSelectedLabelId;
             };
+            
+
+            $scope.isEdit = $routeParams.contactId != undefined && $routeParams.contactId > 0;
+            $scope.contact = {
+                PhoneNumbers: [],
+                EmailAddresses: [],
+                Tags: []
+            };
+            
+            initialize();
+
 
             $scope.addContact = function (contact) {
                 contactService.addContact(contact)
@@ -111,6 +71,7 @@ app.controller('contactController',
                         });
             };
             
+
             $scope.editContact = function (contact) {
                 contactService.editContact(contact)
                     .$promise
@@ -122,6 +83,7 @@ app.controller('contactController',
                             $rootScope.error = 'Error occurred while editing contact.';
                         });
             };
+
 
             $scope.addPhoneNumber = function () {
 
@@ -145,11 +107,11 @@ app.controller('contactController',
                 $scope.number = null;
                 $scope.phoneNumberSelectedLabelId = $scope.defaultSelectedLabelId;
             };
-            
             $scope.deletePhoneNumber = function (index) {
                 $scope.contact.PhoneNumbers.splice(index, 1);
             };
             
+
             $scope.addEmailAddress = function () {
 
                 var label = $filter('filter')($scope.labels, { LabelId: $scope.emailAddressSelectedLabelId })[0];
@@ -172,11 +134,11 @@ app.controller('contactController',
                 $scope.emailAddress = null;
                 $scope.emailAddressSelectedLabelId = $scope.defaultSelectedLabelId;
             };
-
             $scope.deleteEmailAddress = function (index) {
-                $scope.contact.emailAddresses.splice(index, 1);
+                $scope.contact.EmailAddresses.splice(index, 1);
             };
             
+
             $scope.addTag = function () {
 
                 var tagAdd = {
@@ -194,7 +156,6 @@ app.controller('contactController',
 
                 $scope.tag = null;
             };
-
             $scope.deleteTag = function (index) {
                 $scope.contact.Tags.splice(index, 1);
             };
