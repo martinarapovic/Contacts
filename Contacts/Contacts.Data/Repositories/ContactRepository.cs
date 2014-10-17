@@ -18,7 +18,7 @@ namespace Contacts.Data.Repositories
             
         }
 
-        public override Contact GetById(int id)
+        public Contact GetByIdWithoutTracking(int id)
         {
             return base.DataContext.Contacts.AsNoTracking()
                        .Include(x => x.EmailAddresses)
@@ -42,6 +42,6 @@ namespace Contacts.Data.Repositories
 
     public interface IContactRepository : IRepository<Contact>
     {
-
+        Contact GetByIdWithoutTracking(int id);
     }
 }

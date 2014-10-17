@@ -40,7 +40,7 @@ namespace Contacts.Services
 
         public Contact GetContact(int id)
         {
-            return _repository.GetById(id);
+            return _repository.GetByIdWithoutTracking(id);
         }
 
         public Contact UpdateContact(Contact model)
