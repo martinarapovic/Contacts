@@ -18,7 +18,7 @@ namespace Contacts.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/contacts/search/{condition}")]
+        [Route("api/contacts/search/{condition:alpha}")]
         public IHttpActionResult Search(string condition)
         {
             var contacts = _contactService.GetContacts(condition);

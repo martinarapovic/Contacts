@@ -30,12 +30,12 @@ app.factory('serviceHelper',
                             }
                         },
                         getFiltered: {
-                            url: createUrl("api/contacts?condition=:condition"),
+                            url: createUrl("api/contacts/search/:condition"),
                             method: 'GET',
                             isArray: true,
-                            params: {
+                            //params: {
                                 condition: '@condition'
-                            }
+                            //}
                         }
                     });
             };

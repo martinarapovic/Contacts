@@ -1,39 +1,45 @@
 ﻿
 <h5 class="ui header">Contacts</h5>
 <div class="ui divider"></div>
-<div>
-    <table data-ng-cloak data-ng-show="contacts && contacts.length > 0" class="ui small table segment">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Address</th>
-                <th>City</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr data-ng-repeat="contact in contacts">
-                <td>{{contact.FirstName}}</td>
-                <td>{{contact.LastName}}</td>
-                <td>{{contact.Address}}</td>
-                <td>{{contact.City}}</td>
-                <td style="width: 4%;">
-                    <a href="/contacts/edit/{{contact.ContactId}}"><i class="ui icon edit"></i></a>
-                </td>
-                <td style="width: 4%;">
-                    <i class="ui icon trash" style="float: right;" title="Delete" data-message="Do you want to delete this contact?"
-                       data-modal-id="{{contact.ContactId}}" data-on-confirm="deleteContact(contact.ContactId);"
-                       my-modal-confirm></i>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div data-ng-cloak data-ng-show="contacts && contacts.length == 0" class="ui warning message">
-        There are no contacts in db... Use Create new button to add new contact!
+<div class="ui blue segment">
+    <div class="ui action input">
+          <input type="text" placeholder="Search..." name="searchTerm" id="searchTerm" data-ng-model="searchTerm">
+          <div class="ui blue button" data-ng-click="search()"><i class="ui icon search"></i>Search</div>
     </div>
-    <div>
-        <a href="/contacts/add" class="ui blue labeled icon button"><i class="ui icon add"></i>Create new</a>
+    <div class="ui segment">
+        <table data-ng-cloak data-ng-show="contacts && contacts.length > 0" class="ui small table segment">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="contact in contacts">
+                    <td>{{contact.FirstName}}</td>
+                    <td>{{contact.LastName}}</td>
+                    <td>{{contact.Address}}</td>
+                    <td>{{contact.City}}</td>
+                    <td style="width: 4%;">
+                        <a href="/contacts/edit/{{contact.ContactId}}"><i class="ui icon edit"></i></a>
+                    </td>
+                    <td style="width: 4%;">
+                        <i class="ui icon trash" style="float: right;" title="Delete" data-message="Do you want to delete this contact?"
+                           data-modal-id="{{contact.ContactId}}" data-on-confirm="deleteContact(contact.ContactId);"
+                           my-modal-confirm></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div data-ng-cloak data-ng-show="contacts && contacts.length == 0" class="ui warning message">
+            There are no contacts in db... Use Create new button to add new contact!
+        </div>
+        <div>
+            <a href="/contacts/add" class="ui blue labeled icon button"><i class="ui icon add"></i>Create new</a>
+        </div>
     </div>
 </div>

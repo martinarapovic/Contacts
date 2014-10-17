@@ -15,6 +15,10 @@ app.factory('contactService',
             var getContactsPaged = function (params) {
                 return contact.getPaged(params);
             };
+            
+            var searchContacts = function (condition) {
+                return contact.getFiltered({ condition: condition });
+            };
 
             var deleteContact = function (contactId) {
                 return contact.delete({ contactId: contactId });
@@ -38,6 +42,7 @@ app.factory('contactService',
                 getContacts: getContacts,
                 getContactsPaged: getContactsPaged,
                 getContact: getContact,
+                searchContacts: searchContacts,
                 deleteContact: deleteContact,
                 addContact: addContact,
                 editContact: editContact
